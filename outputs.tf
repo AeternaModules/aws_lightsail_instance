@@ -4,7 +4,7 @@ output "lightsail_instances_id" {
 }
 output "lightsail_instances_add_on" {
   description = "Map of add_on values across all lightsail_instances, keyed the same as var.lightsail_instances"
-  value       = { for k, v in aws_lightsail_instance.lightsail_instances : k => v.add_on if v.add_on != null && length(v.add_on) > 0 }
+  value       = { for k, v in aws_lightsail_instance.lightsail_instances : k => one(v.add_on) if v.add_on != null && length(v.add_on) > 0 }
 }
 output "lightsail_instances_arn" {
   description = "Map of arn values across all lightsail_instances, keyed the same as var.lightsail_instances"
